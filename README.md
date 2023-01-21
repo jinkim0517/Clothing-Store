@@ -9,9 +9,11 @@ two main non-trivial variables:
 
 This target users for this system would be clothing store owners who would want to digitally manage their 
 inventory for convenience and to better their business. This system would hold information about different pieces of 
-clothing that someone like a manager could use to gain a better understanding of their business.
+clothing that someone like a manager could use to gain a better understanding of their business. This topic interests me
+because clothes are an interest to me, and also, understanding how store inventory is managed and the types of functions
+that can be useful would be a valuable skill if I were to create programs for companies in the business industry.
 
-Knowing this, some fields that the class Clothing
+Knowing all this, some fields that the class Clothing
 has would be:
 - *Name*
   - A string that holds the name of a specific clothing piece.
