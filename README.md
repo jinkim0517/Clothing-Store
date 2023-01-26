@@ -13,23 +13,6 @@ clothing that someone like a manager could use to gain a better understanding of
 because clothes are an interest to me, and also, understanding how store inventory is managed and the types of functions
 that can be useful would be a valuable skill if I were to create programs for companies in the business industry.
 
-Knowing all this, some fields that the class Clothing
-has would be:
-- *Name*
-  - A string that holds the name of a specific clothing piece.
-- *Type*
-  - A string that holds the type of clothing that this clothing instance is.
-    - A top, bottom, outerwear, or footwear.
-- *Price*
-  - A double that holds the price of this clothing instance.
-- *Availability*
-  - A boolean that relates to whether or not an item is in stock.
-- *Sales*
-  - The number of times that this clothing instance has been sold.
-
-A list of **Clothing** represents the entire store inventory, as it is a collection of all the clothes that the store
-owns.
-
 Some features that a user would want to do with this system are: 
 - A user of this system would want to create a custom Clothing instance and add it to their inventory by inputting data
 into an interface.
