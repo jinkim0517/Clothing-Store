@@ -21,5 +21,4 @@ into an interface.
 
 - A user of this system would want to change any field of a clothing item.
 
-- A user of this system would want to view the items in their store inventory, either through specific filtering
-or sorting.
+- A user of this system would want to view all the items in their store inventory.
