@@ -3,107 +3,145 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClothingTest {
-    Clothing c1;
-    Clothing c2;
+    Clothing top;
+    Clothing bottom;
+    Clothing outerwear;
+    Clothing footwear;
 
     @BeforeEach
     public void setUp() {
-        c1 = new Clothing("Polo T-Shirt", "Top", 19.99);
-        c2 = new Clothing("Straight-Fit Jeans", "Bottom", 34.99);
+        top = new Top("Polo T-Shirt", 19.99);
+        bottom = new Bottom("Straight-Fit Jeans", 34.99);
+        outerwear = new Outerwear("Denim Jacket", 79.99);
+        footwear = new Footwear("Jordan 1 Bred Toe", 1500.00);
     }
 
     @Test
     public void constructorTest() {
-        assertEquals("Polo T-Shirt", c1.getName());
-        assertEquals("Straight-Fit Jeans", c2.getName());
+        assertEquals("Polo T-Shirt", top.getName());
+        assertEquals("Straight-Fit Jeans", bottom.getName());
+        assertEquals("Denim Jacket", outerwear.getName());
+        assertEquals("Jordan 1 Bred Toe", footwear.getName());
 
-        assertEquals("Top", c1.getCategory());
-        assertEquals("Bottom", c2.getCategory());
+        assertEquals(19.99, top.getPrice());
+        assertEquals(34.99, bottom.getPrice());
+        assertEquals(79.99, outerwear.getPrice());
+        assertEquals(1500.00, footwear.getPrice());
 
-        assertEquals(19.99, c1.getPrice());
-        assertEquals(34.99, c2.getPrice());
+        ArrayList<String> expectedTopAvails = new ArrayList<>(List.of("S", "M", "L", "XL"));
+        ArrayList<String> expectedBotAvails = new ArrayList<>(List.of("28", "29", "30", "31", "32", "33"));
+        ArrayList<String> expectedFootAvails = new ArrayList<>(List.of("6", "7", "8", "9", "10",
+                "11", "12", "13", "14"));
 
-        assertTrue(c1.isAvailable());
-        assertTrue(c2.isAvailable());
+        assertEquals(expectedTopAvails, top.getAvailabilities());
+        assertEquals(expectedTopAvails, outerwear.getAvailabilities());
+        assertEquals(expectedBotAvails, bottom.getAvailabilities());
+        assertEquals(expectedFootAvails, footwear.getAvailabilities());
 
-        assertEquals(0, c1.getSales());
-        assertEquals(0, c2.getSales());
-    }
-
-    @Test
-    public void getNameTest() {
-        assertEquals("Polo T-Shirt", c1.getName());
-        assertEquals("Straight-Fit Jeans", c2.getName());
-    }
-
-    @Test
-    public void getCategoryTest() {
-        assertEquals("Top", c1.getCategory());
-        assertEquals("Bottom", c2.getCategory());
-    }
-
-    @Test
-    public void getPriceTest() {
-        assertEquals(19.99, c1.getPrice());
-        assertEquals(34.99, c2.getPrice());
-    }
-
-    @Test
-    public void isAvailableTest() {
-        assertTrue(c1.isAvailable());
-        assertTrue(c2.isAvailable());
-    }
-
-    @Test
-    public void getSalesTest() {
-        assertEquals(0, c1.getSales());
-        assertEquals(0, c2.getSales());
+        assertEquals(0, top.getSales());
+        assertEquals(0, bottom.getSales());
+        assertEquals(0, outerwear.getSales());
+        assertEquals(0, footwear.getSales());
     }
 
     @Test
     public void addSalesTest() {
-        assertEquals(0, c1.getSales());
-        assertEquals(0, c2.getSales());
+        assertEquals(0, top.getSales());
+        assertEquals(0, bottom.getSales());
+        assertEquals(0, outerwear.getSales());
+        assertEquals(0, footwear.getSales());
 
-        c1.addSale();
-        c2.addSale();
+        top.addSale();
+        bottom.addSale();
+        outerwear.addSale();
+        footwear.addSale();
 
-        assertEquals(1, c1.getSales());
-        assertEquals(1, c2.getSales());
+        assertEquals(1, top.getSales());
+        assertEquals(1, bottom.getSales());
+        assertEquals(1, outerwear.getSales());
+        assertEquals(1, footwear.getSales());
 
-        c1.addSale();
-        c1.addSale();
-        c2.addSale();
-        c2.addSale();
+        top.addSale();
+        bottom.addSale();
+        outerwear.addSale();
+        footwear.addSale();
 
-        assertEquals(3, c1.getSales());
-        assertEquals(3, c2.getSales());
+        top.addSale();
+        bottom.addSale();
+        outerwear.addSale();
+        footwear.addSale();
+
+        assertEquals(3, top.getSales());
+        assertEquals(3, bottom.getSales());
+        assertEquals(3, outerwear.getSales());
+        assertEquals(3, footwear.getSales());
     }
 
     @Test
     public void setNameTest() {
-        assertEquals("Polo T-Shirt", c1.getName());
-        assertEquals("Straight-Fit Jeans", c2.getName());
+        assertEquals("Polo T-Shirt", top.getName());
+        assertEquals("Straight-Fit Jeans", bottom.getName());
 
-        c1.setName("Graphic T-Shirt");
-        c2.setName("Skinny Jeans");
+        top.setName("Graphic T-Shirt");
+        bottom.setName("Skinny Jeans");
 
-        assertEquals("Graphic T-Shirt", c1.getName());
-        assertEquals("Skinny Jeans", c2.getName());
+        assertEquals("Graphic T-Shirt", top.getName());
+        assertEquals("Skinny Jeans", bottom.getName());
     }
 
     @Test
-    public void setCategoryTest() {
-        assertEquals("Top", c1.getCategory());
-        assertEquals("Bottom", c2.getCategory());
+    public void setPriceTest() {
+        assertEquals(19.99, top.getPrice());
+        assertEquals(34.99, bottom.getPrice());
 
-        c1.setCategory("Footwear");
-        c2.setCategory("Outerwear");
+        top.setPrice(24.99);
+        bottom.setPrice(39.99);
 
-        assertEquals("Footwear", c1.getCategory());
-        assertEquals("Outerwear", c2.getCategory());
+        assertEquals(24.99, top.getPrice());
+        assertEquals(39.99, bottom.getPrice());
+    }
+
+    @Test
+    public void addAvailabilityTest() {
+        ArrayList<String> expectedTopAvails = new ArrayList<>(List.of("S", "M", "L", "XL", "XXL"));
+        ArrayList<String> expectedBotAvails = new ArrayList<>(List.of("28", "29", "30", "31", "32", "33", "34"));
+        ArrayList<String> expectedFootAvails = new ArrayList<>(List.of("6", "7", "8", "9", "10",
+                "11", "12", "13", "14", "15"));
+
+        top.addAvailability("XXL");
+        outerwear.addAvailability("XXL");
+        bottom.addAvailability("34");
+        footwear.addAvailability("15");
+
+        assertEquals(expectedTopAvails, top.getAvailabilities());
+        assertEquals(expectedTopAvails, outerwear.getAvailabilities());
+        assertEquals(expectedBotAvails, bottom.getAvailabilities());
+        assertEquals(expectedFootAvails, footwear.getAvailabilities());
+    }
+
+    @Test
+    public void removeAvailabilityTest() {
+        top.removeAvailability("M");
+        bottom.removeAvailability("31");
+        outerwear.removeAvailability("S");
+        footwear.removeAvailability("9");
+
+        assertEquals(new ArrayList<>(List.of("S", "L", "XL")), top.getAvailabilities());
+        assertEquals(new ArrayList<>(List.of("M", "L", "XL")), outerwear.getAvailabilities());
+        assertEquals(new ArrayList<>(List.of("28", "29", "30", "32", "33")), bottom.getAvailabilities());
+        assertEquals(new ArrayList<>(List.of("6", "7", "8", "10", "11", "12", "13", "14")),
+                footwear.getAvailabilities());
+
+        top.removeAvailability("S");
+        top.removeAvailability("L");
+        top.removeAvailability("XL");
+
+        assertFalse(top.isInStock());
     }
 }

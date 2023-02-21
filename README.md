@@ -14,11 +14,13 @@ because clothes are an interest to me, and also, understanding how store invento
 that can be useful would be a valuable skill if I were to create programs for companies in the business industry.
 
 Some features that a user would want to do with this system are: 
-- A user of this system would want to create a custom Clothing instance and add it to their inventory by inputting data
+- A user of this system would want to create one or multiple custom Clothing instances and add them to the inventory by inputting data
 into an interface.
 
-- A user of this system would want to remove an item from their store inventory.
+- A user of this system would want to remove as many items as they want from their store inventory (on at a time).
 
 - A user of this system would want to change any field of a clothing item.
 
 - A user of this system would want to view all the items in their store inventory.
+
+TODO: CLASS LEVEL DECLARATION COMMENTS
