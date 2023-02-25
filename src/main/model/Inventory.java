@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+// An inventory of clothing with a list of clothes
 public class Inventory {
     ArrayList<Clothing> inventory;
 
@@ -20,14 +21,19 @@ public class Inventory {
     // MODIFIES: this
     // EFFECTS: searches for and removes a piece of clothing from the inventory
     public void removeClothing(String name, double price, String type) {
-        for (Clothing c: inventory) {
-            if (name.equals(c.getName()) && (price == c.getPrice()) && type.equals(c.getType())) {
-                inventory.remove(c);
-            }
-        }
+        Clothing toRemove = findClothing(name, price, type);
+        inventory.remove(toRemove);
     }
 
-    // TODO: add a find clothing method and use it in remove and also have it called in the change menu.
+    public Clothing findClothing(String name, double price, String type) {
+        Clothing result = null;
+        for (Clothing c: inventory) {
+            if (name.equals(c.getName()) && (price == c.getPrice()) && type.equals(c.getType())) {
+                result = c;
+            }
+        }
+        return result;
+    }
 
     // Getters
     public Clothing getClothingAt(int index) {
@@ -38,5 +44,7 @@ public class Inventory {
         return inventory;
     }
 
-    public int getSize() { return inventory.size(); }
+    public int getSize() {
+        return inventory.size();
+    }
 }

@@ -41,6 +41,17 @@ public class InventoryTest {
     }
 
     @Test
+    public void findClothingTest() {
+        assertEquals(null, inventory.findClothing("Relaxed Cardigan", 24.99, "Top"));
+
+        inventory.addClothing(c1);
+        inventory.addClothing(c2);
+
+        assertEquals(c1, inventory.findClothing("Relaxed Cardigan", 24.99, "Top"));
+        assertEquals(c2, inventory.findClothing("Nike Sacai Waffle", 350.00, "Footwear"));
+    }
+
+    @Test
     public void removeClothingTest() {
         inventory.addClothing(c1);
         inventory.addClothing(c2);

@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// A bottom clothing item with a name, price, category, list of sizes and number of sales
 public class Bottom extends Clothing {
     private ArrayList<String> waistSizes;
 
@@ -17,7 +18,7 @@ public class Bottom extends Clothing {
     // REQUIRES: size is in sizes
     // MODIFIES: this
     // EFFECTS: removes availability for a specific size.
-    public void removeAvailability(String size) {
+    public void removeSize(String size) {
         waistSizes.remove(size);
     }
 
@@ -26,7 +27,7 @@ public class Bottom extends Clothing {
     // REQUIRES: size is not already in sizes
     // MODIFIES: this
     // EFFECTS: adds availability for a specific size
-    public void addAvailability(String size) {
+    public void addSize(String size) {
         waistSizes.add(size);
     }
 
@@ -34,7 +35,7 @@ public class Bottom extends Clothing {
     // Getters
 
     @Override
-    public ArrayList<String> getAvailabilities() {
+    public ArrayList<String> getSizes() {
         return waistSizes;
     }
 

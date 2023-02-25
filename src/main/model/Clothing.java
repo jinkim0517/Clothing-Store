@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-// TODO: add class level declarations for all classes
+// A clothing item with a name, price, category, and number of sales
 public abstract class Clothing {
     private String name;
     private double price;
@@ -17,8 +17,8 @@ public abstract class Clothing {
 
     // MODIFIES: this
     // EFFECTS: increments sales by 1
-    public void addSale() {
-        sales++;
+    public void addSales(int amount) {
+        sales += amount;
     }
 
     // Setters
@@ -39,11 +39,11 @@ public abstract class Clothing {
 
     // MODIFIES: this
     // EFFECTS: removes availability for a size of clothing
-    public abstract void removeAvailability(String size);
+    public abstract void removeSize(String size);
 
     // MODIFIES: this
     // EFFECTS: adds availability for a size of clothing
-    public abstract void addAvailability(String size);
+    public abstract void addSize(String size);
 
     // Getters
 
@@ -51,17 +51,19 @@ public abstract class Clothing {
         return name;
     }
 
-    public double getPrice() { return price; }
+    public double getPrice() {
+        return price;
+    }
 
     public int getSales() {
         return sales;
     }
 
     public boolean isInStock() {
-        return !(getAvailabilities().isEmpty());
+        return !(getSizes().isEmpty());
     }
 
-    public abstract ArrayList<String> getAvailabilities();
+    public abstract ArrayList<String> getSizes();
 
     public abstract String getType();
 }
