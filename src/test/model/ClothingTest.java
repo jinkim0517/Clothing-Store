@@ -57,6 +57,11 @@ class ClothingTest {
         assertEquals(0, bottom.getSales());
         assertEquals(0, outerwear.getSales());
         assertEquals(0, footwear.getSales());
+
+        assertTrue(top.isInStock());
+        assertTrue(outerwear.isInStock());
+        assertTrue(bottom.isInStock());
+        assertTrue(footwear.isInStock());
     }
 
     @Test
