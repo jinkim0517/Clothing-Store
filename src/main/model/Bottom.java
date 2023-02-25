@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 // A bottom clothing item with a name, price, category, list of sizes and number of sales
 public class Bottom extends Clothing {
@@ -11,7 +10,15 @@ public class Bottom extends Clothing {
     // EFFECTS: creates a new bottom clothing piece with a given name and price
     public Bottom(String name, double price) {
         super(name, price);
-        waistSizes = new ArrayList<>(List.of("28", "29", "30", "31", "32", "33"));
+        waistSizes = initializeSizes();
+    }
+
+    private ArrayList<String> initializeSizes() {
+        ArrayList<String> result = new ArrayList<>();
+        for (int i = 28; i <= 33; i++) {
+            result.add(Integer.toString(i));
+        }
+        return result;
     }
 
     @Override

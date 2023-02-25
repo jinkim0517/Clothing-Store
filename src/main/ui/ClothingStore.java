@@ -320,7 +320,7 @@ public class ClothingStore {
                 ArrayList<String> availabilities = c.getSizes();
                 String type = c.getType();
                 int sales = c.getSales();
-                System.out.println(name + ", " + price + ", sizes: ƒ" + listToString(availabilities) + ", " + type
+                System.out.println(name + ", " + price + ", sizes: {" + listToString(availabilities) + "}a, " + type
                         + ", " + sales + " sales.");
             }
         }
