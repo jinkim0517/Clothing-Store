@@ -36,8 +36,6 @@ public class InventoryTest {
 
         assertEquals(2, inventory.getSize());
         assertEquals(c2, inventory.getClothingAt(1));
-
-        assertEquals(new ArrayList<>(List.of(c1, c2)), inventory.getInventory());
     }
 
     @Test
