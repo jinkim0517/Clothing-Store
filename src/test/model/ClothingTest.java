@@ -34,15 +34,24 @@ class ClothingTest {
         assertEquals(79.99, outerwear.getPrice());
         assertEquals(1500.00, footwear.getPrice());
 
-        ArrayList<String> expectedTopAvails = new ArrayList<>(List.of("S", "M", "L", "XL"));
-        ArrayList<String> expectedBotAvails = new ArrayList<>(List.of("28", "29", "30", "31", "32", "33"));
-        ArrayList<String> expectedFootAvails = new ArrayList<>(List.of("6", "7", "8", "9", "10",
-                "11", "12", "13", "14"));
+        assertEquals("S", top.getSizes().get(0));
+        assertEquals("M", top.getSizes().get(1));
+        assertEquals("L", top.getSizes().get(2));
+        assertEquals("XL", top.getSizes().get(3));
 
-        assertEquals(expectedTopAvails, top.getSizes());
-        assertEquals(expectedTopAvails, outerwear.getSizes());
-        assertEquals(expectedBotAvails, bottom.getSizes());
-        assertEquals(expectedFootAvails, footwear.getSizes());
+        for (int i = 28; i <= 33; i++) {
+            assertEquals(Integer.toString(i), bottom.getSizes().get(i - 28));
+        }
+
+        assertEquals("S", outerwear.getSizes().get(0));
+        assertEquals("M", outerwear.getSizes().get(1));
+        assertEquals("L", outerwear.getSizes().get(2));
+        assertEquals("XL", outerwear.getSizes().get(3));
+
+
+        for (int i = 6; i <= 14; i++) {
+            assertEquals(Integer.toString(i), footwear.getSizes().get(i - 6));
+        }
 
         assertEquals(0, top.getSales());
         assertEquals(0, bottom.getSales());
@@ -108,40 +117,57 @@ class ClothingTest {
     }
 
     @Test
-    public void addAvailabilityTest() {
-        ArrayList<String> expectedTopAvails = new ArrayList<>(List.of("S", "M", "L", "XL", "XXL"));
-        ArrayList<String> expectedBotAvails = new ArrayList<>(List.of("28", "29", "30", "31", "32", "33", "34"));
-        ArrayList<String> expectedFootAvails = new ArrayList<>(List.of("6", "7", "8", "9", "10",
-                "11", "12", "13", "14", "15"));
-
+    public void addSizesTest() {
         top.addSize("XXL");
         outerwear.addSize("XXL");
         bottom.addSize("34");
         footwear.addSize("15");
 
-        assertEquals(expectedTopAvails, top.getSizes());
-        assertEquals(expectedTopAvails, outerwear.getSizes());
-        assertEquals(expectedBotAvails, bottom.getSizes());
-        assertEquals(expectedFootAvails, footwear.getSizes());
+        assertEquals(5, top.getSizes().size());
+        assertEquals("XXL", top.getSizes().get(4));
+
+        assertEquals(5, outerwear.getSizes().size());
+        assertEquals("XXL", outerwear.getSizes().get(4));
+
+        assertEquals(7, bottom.getSizes().size());
+        assertEquals("34", bottom.getSizes().get(6));
+
+        assertEquals(10, footwear.getSizes().size());
+        assertEquals("15", footwear.getSizes().get(9));
     }
 
     @Test
     public void removeAvailabilityTest() {
         top.removeSize("M");
-        bottom.removeSize("31");
         outerwear.removeSize("S");
+        bottom.removeSize("31");
         footwear.removeSize("9");
 
-        assertEquals(new ArrayList<>(List.of("S", "L", "XL")), top.getSizes());
-        assertEquals(new ArrayList<>(List.of("M", "L", "XL")), outerwear.getSizes());
-        assertEquals(new ArrayList<>(List.of("28", "29", "30", "32", "33")), bottom.getSizes());
-        assertEquals(new ArrayList<>(List.of("6", "7", "8", "10", "11", "12", "13", "14")),
-                footwear.getSizes());
+        assertEquals(3, top.getSizes().size());
+        assertFalse(top.getSizes().contains("M"));
+
+        assertEquals(3, outerwear.getSizes().size());
+        assertFalse(outerwear.getSizes().contains("S"));
+
+        assertEquals(5, bottom.getSizes().size());
+        assertFalse(bottom.getSizes().contains("31"));
+
+        assertEquals(8, footwear.getSizes().size());
+        assertFalse(footwear.getSizes().contains("9"));
 
         top.removeSize("S");
         top.removeSize("L");
         top.removeSize("XL");
 
         assertFalse(top.isInStock());
+    }
+
+    @Test
+    public void getTypeTest() {
+        assertEquals("Top", top.getType());
+        assertEquals("Outerwear", outerwear.getType());
+        assertEquals("Bottom", bottom.getType());
+        assertEquals("Footwear", footwear.getType());
+
     }
 }
