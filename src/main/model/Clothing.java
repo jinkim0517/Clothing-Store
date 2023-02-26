@@ -16,6 +16,14 @@ public abstract class Clothing {
     }
 
     // MODIFIES: this
+    // EFFECTS: removes availability for a size of clothing
+    public abstract void removeSize(String size);
+
+    // MODIFIES: this
+    // EFFECTS: adds availability for a size of clothing
+    public abstract void addSize(String size);
+
+    // MODIFIES: this
     // EFFECTS: increments sales by 1
     public void addSales(int amount) {
         sales += amount;
@@ -36,14 +44,6 @@ public abstract class Clothing {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    // MODIFIES: this
-    // EFFECTS: removes availability for a size of clothing
-    public abstract void removeSize(String size);
-
-    // MODIFIES: this
-    // EFFECTS: adds availability for a size of clothing
-    public abstract void addSize(String size);
 
     // Getters
 

@@ -3,11 +3,9 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+// Test class for Inventory
 public class InventoryTest {
     Inventory inventory;
     Clothing c1;
@@ -40,7 +38,7 @@ public class InventoryTest {
 
     @Test
     public void findClothingTest() {
-        assertEquals(null, inventory.findClothing("Relaxed Cardigan", 24.99, "Top"));
+        assertNull(inventory.findClothing("Relaxed Cardigan", 24.99, "Top"));
 
         inventory.addClothing(c1);
         inventory.addClothing(c2);
@@ -48,9 +46,9 @@ public class InventoryTest {
         assertEquals(c1, inventory.findClothing("Relaxed Cardigan", 24.99, "Top"));
         assertEquals(c2, inventory.findClothing("Nike Sacai Waffle", 350.00, "Footwear"));
 
-        assertEquals(null, inventory.findClothing("Relaxed Cardigan", 3, "Top"));
-        assertEquals(null, inventory.findClothing("Relaxed Cardigan", 24.99, "Bottom"));
-        assertEquals(null, inventory.findClothing("Relaxed Hoodie", 24.99, "Top"));
+        assertNull(inventory.findClothing("Relaxed Cardigan", 3, "Top"));
+        assertNull(inventory.findClothing("Relaxed Cardigan", 24.99, "Bottom"));
+        assertNull(inventory.findClothing("Relaxed Hoodie", 24.99, "Top"));
     }
 
     @Test

@@ -25,6 +25,7 @@ public class Inventory {
         inventory.remove(toRemove);
     }
 
+    // EFFECTS: Searches the inventory for a piece of clothing
     public Clothing findClothing(String name, double price, String type) {
         Clothing result = null;
         for (Clothing c: inventory) {
@@ -36,6 +37,7 @@ public class Inventory {
     }
 
     // Getters
+
     public Clothing getClothingAt(int index) {
         return inventory.get(index);
     }

@@ -58,8 +58,6 @@ public class ClothingStore {
 
     // EFFECTS: chooses a menu based on an input choice
     private void executeChoice(String choice) {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
         if (choice.equals("a")) {
             addMenu();
         } else if (choice.equals("r")) {
@@ -179,7 +177,6 @@ public class ClothingStore {
             mainMenu();
         } else {
             System.out.println("Invalid input! Please make a valid choice.");
-            updateMenu();
         }
     }
 
@@ -316,7 +313,7 @@ public class ClothingStore {
 
             for (Clothing c : inventory.getInventory()) {
                 String name = c.getName();
-                Double price = c.getPrice();
+                double price = c.getPrice();
                 ArrayList<String> availabilities = c.getSizes();
                 String type = c.getType();
                 int sales = c.getSales();
@@ -337,7 +334,7 @@ public class ClothingStore {
             }
         }
 
-        if (result == null) {
+        if (result == "") {
             return "No available sizes";
         } else {
             return result;

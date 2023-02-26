@@ -11,6 +11,12 @@ public class Top extends Clothing {
     public Top(String name, double price) {
         super(name, price);
         sizes = new ArrayList<>();
+        initializeSizes();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes sizes to appropriate values
+    private void initializeSizes() {
         sizes.add("S");
         sizes.add("M");
         sizes.add("L");

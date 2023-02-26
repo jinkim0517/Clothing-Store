@@ -10,19 +10,20 @@ public class Bottom extends Clothing {
     // EFFECTS: creates a new bottom clothing piece with a given name and price
     public Bottom(String name, double price) {
         super(name, price);
-        waistSizes = initializeSizes();
+        waistSizes = new ArrayList<>();
+        initializeSizes();
     }
 
-    private ArrayList<String> initializeSizes() {
+    // MODIFIES: this
+    // EFFECTS: initializes sizes to appropriate values
+    private void initializeSizes() {
         ArrayList<String> result = new ArrayList<>();
         for (int i = 28; i <= 33; i++) {
-            result.add(Integer.toString(i));
+            waistSizes.add(Integer.toString(i));
         }
-        return result;
     }
 
     @Override
-    // REQUIRES: size is in sizes
     // MODIFIES: this
     // EFFECTS: removes availability for a specific size.
     public void removeSize(String size) {
@@ -31,13 +32,11 @@ public class Bottom extends Clothing {
 
 
     @Override
-    // REQUIRES: size is not already in sizes
     // MODIFIES: this
     // EFFECTS: adds availability for a specific size
     public void addSize(String size) {
         waistSizes.add(size);
     }
-
 
     // Getters
 
