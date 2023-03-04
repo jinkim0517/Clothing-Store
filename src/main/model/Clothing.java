@@ -1,27 +1,44 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 // A clothing item with a name, price, category, and number of sales
-public abstract class Clothing {
+public abstract class Clothing implements Writable {
     private String name;
     private double price;
     private int sales;
+    private ArrayList<String> sizes;
 
     // REQUIRES: non-empty name, non-empty category, 0 <= price
     public Clothing(String name, double price) {
         this.name = name;
         this.price = price;
         this.sales = 0;
+        this.sizes = new ArrayList<>();
     }
+
+    public abstract void initializeSizes();
 
     // MODIFIES: this
     // EFFECTS: removes availability for a size of clothing
-    public abstract void removeSize(String size);
+    public void removeSize(String size) {
+        sizes.remove(size);
+    }
 
     // MODIFIES: this
     // EFFECTS: adds availability for a size of clothing
-    public abstract void addSize(String size);
+    public void addSize(String size) {
+        sizes.add(size);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the available sizes for this clothing piece
+    public void setSizes(ArrayList<String> sizes) {
+        this.sizes = sizes;
+    }
 
     // MODIFIES: this
     // EFFECTS: increments sales by 1
@@ -63,7 +80,11 @@ public abstract class Clothing {
         return !(getSizes().isEmpty());
     }
 
-    public abstract ArrayList<String> getSizes();
+    public ArrayList<String> getSizes() {
+        return sizes;
+    }
 
     public abstract String getType();
+
+    public abstract JSONObject toJson();
 }

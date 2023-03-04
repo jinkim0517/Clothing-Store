@@ -1,0 +1,28 @@
+{"clothes": [
+    {
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "price": 70,
+        "name": "Leather Jacket",
+        "type": "Outerwear",
+        "sales": 17
+    },
+    {
+        "sizes": [
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33"
+        ],
+        "price": 45,
+        "name": "Dress Pants",
+        "type": "Bottom",
+        "sales": 0
+    }
+]}

@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 // An inventory of clothing with a list of clothes
-public class Inventory {
+public class Inventory implements Writable{
     ArrayList<Clothing> inventory;
 
     // Creates a new list of clothes to be used as an inventory.
@@ -21,15 +25,15 @@ public class Inventory {
     // MODIFIES: this
     // EFFECTS: searches for and removes a piece of clothing from the inventory
     public void removeClothing(String name, double price, String type) {
-        Clothing toRemove = findClothing(name, price, type);
+        Clothing toRemove = findClothing(name, type);
         inventory.remove(toRemove);
     }
 
     // EFFECTS: Searches the inventory for a piece of clothing
-    public Clothing findClothing(String name, double price, String type) {
+    public Clothing findClothing(String name, String type) {
         Clothing result = null;
         for (Clothing c: inventory) {
-            if (name.equals(c.getName()) && (price == c.getPrice()) && type.equals(c.getType())) {
+            if (name.equals(c.getName()) && type.equals(c.getType())) {
                 result = c;
             }
         }
@@ -48,5 +52,21 @@ public class Inventory {
 
     public int getSize() {
         return inventory.size();
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("clothes", clothesToJson());
+        return json;
+    }
+
+    private JSONArray clothesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Clothing c : inventory) {
+            jsonArray.put(c.toJson());
+        }
+
+        return jsonArray;
     }
 }

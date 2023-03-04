@@ -1,53 +1,44 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 // A footwear clothing item with a name, price, category, list of sizes and number of sales
 public class Footwear extends Clothing {
-    private ArrayList<String> sizes;
-
     // REQUIRES: non-empty name, 0 <= price
     // EFFECTS: creates a new piece of footwear with a given name and price
     public Footwear(String name, double price) {
         super(name, price);
-        sizes = new ArrayList<>();
         initializeSizes();
     }
 
     // MODIFIES: this
     // EFFECTS: initializes sizes to appropriate values
-    private void initializeSizes() {
+    public void initializeSizes() {
         ArrayList<String> result = new ArrayList<>();
         for (int i = 6; i <= 14; i++) {
-            sizes.add(Integer.toString(i));
+            super.addSize(Integer.toString(i));
         }
-    }
-
-    @Override
-    // REQUIRES: size is in sizes
-    // MODIFIES: this
-    // EFFECTS: removes availability for a specific size.
-    public void removeSize(String size) {
-        sizes.remove(size);
-    }
-
-    @Override
-    // REQUIRES: size is not already in sizes
-    // MODIFIES: this
-    // EFFECTS: adds availability for a specific size
-    public void addSize(String size) {
-        sizes.add(size);
     }
 
     // Getters
 
     @Override
-    public ArrayList<String> getSizes() {
-        return sizes;
+    public String getType() {
+        return "Footwear";
     }
 
     @Override
-    public String getType() {
-        return "Footwear";
+    // EFFECTS: creates a Json equivalent of this clothing object
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", super.getName());
+        json.put("price", super.getPrice());
+        json.put("type", getType());
+        json.put("sizes", getSizes());
+        json.put("sales", super.getSales());
+
+        return json;
     }
 }

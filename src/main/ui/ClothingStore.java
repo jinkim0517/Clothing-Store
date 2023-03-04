@@ -1,7 +1,11 @@
 package ui;
 
+import exceptions.*;
 import model.*;
+import persistence.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,11 +15,18 @@ import static java.lang.Integer.parseInt;
 
 // Runs a clothing store with an inventory that can be interacted with the console
 public class ClothingStore {
+    private static final String JSON_STORE = "./data/inventory.json";
     Scanner userInput;
     Inventory inventory;
 
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
     // EFFECTS: launches the clothing store
-    public ClothingStore() {
+    public ClothingStore() throws FileNotFoundException {
+        inventory = new Inventory();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runUserInterface();
     }
 
@@ -24,7 +35,6 @@ public class ClothingStore {
     // repository:
     // https://github.students.cs.ubc.ca/CPSC210/TellerApp/blob/main/src/main/ca/ubc/cpsc210/bank/ui/TellerApp.java
     private void runUserInterface() {
-        inventory = new Inventory();
         boolean active = true;
         String choice;
 
@@ -35,7 +45,12 @@ public class ClothingStore {
                 active = false;
                 System.out.println("Goodbye~!");
             } else {
-                executeChoice(choice);
+                try {
+                    executeChoice(choice);
+                }
+                catch (invalidInputException e) {
+                    System.out.println("Invalid input! Please try again.");
+                }
             }
         }
     }
@@ -45,19 +60,20 @@ public class ClothingStore {
         String choice;
         userInput = new Scanner(System.in);
 
-        System.out.println("~~~~~~~~Welcome to the Main Menu! Please input an action!~~~~~~~~");
-        System.out.println("\nType 'a' to add a piece of clothing to the inventory.");
-        System.out.println("\nType 'r' to remove a piece of clothing from the inventory.");
-        System.out.println("\nType 'u' to go to the update menu.");
-        System.out.println("\nType 'v' to view the inventory.");
-        System.out.println("\nType 'q' to quit.");
+        System.out.println("\na - add a piece of clothing to the inventory");
+        System.out.println("\nr - remove a piece of clothing from the inventory");
+        System.out.println("\nu - go to the update menu");
+        System.out.println("\nv - view the inventory");
+        System.out.println("\nl - load saved inventory");
+        System.out.println("\ns - save current inventory");
+        System.out.println("\nq - quit.");
 
         choice = userInput.nextLine();
         return choice;
     }
 
     // EFFECTS: chooses a menu based on an input choice
-    private void executeChoice(String choice) {
+    private void executeChoice(String choice) throws invalidInputException {
         if (choice.equals("a")) {
             addMenu();
         } else if (choice.equals("r")) {
@@ -66,22 +82,47 @@ public class ClothingStore {
             updateMenu();
         } else if (choice.equals("v")) {
             viewMenu();
-        } else {
-            System.out.println("Invalid input! Please make a valid choice.");
-            mainMenu();
+        } else if (choice.equals("l")) {
+            loadInventory();
+        }else if (choice.equals("s")) {
+            saveInventory();
+        }else {
+            throw new invalidInputException();
+        }
+    }
+
+    // EFFECTS: saves the inventory data to /data/inventory.json
+    private void saveInventory() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(inventory);
+            jsonWriter.close();
+            System.out.println("Saved the inventory to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads in inventory data from /data/inventory.json
+    private void loadInventory() {
+        try {
+            inventory = jsonReader.read();
+            System.out.println("Loaded the inventory from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 
     // MODIFIES: this
     // EFFECTS: asks for and creates a new piece of clothing, and adds it to the inventory.
+    //          Does not check if price is a double value.
     private void addMenu() {
         String name;
         String price;
         String type;
 
         userInput = new Scanner(System.in);
-
-        System.out.println("~~~~Add Menu~~~~~\n");
 
         System.out.println("Please input the name of the clothing product that you would like to add to the store's "
                 + "inventory: ");
@@ -93,21 +134,21 @@ public class ClothingStore {
         price = userInput.nextLine();
 
 
+
         System.out.println("What clothing category is it? ('Top', 'Bottom', 'Outerwear', or 'Footwear')");
         type = userInput.nextLine();
 
-        Clothing newClothing = makeClothing(name, parseDouble(price), type);
-
-        if (newClothing == null) {
-            System.out.println("Invalid clothing category.");
-        } else {
+        try {
+            Clothing newClothing = makeClothing(name, parseDouble(price), type);
             inventory.addClothing(newClothing);
             System.out.println("New clothing added!\n");
+        } catch (invalidTypeException e) {
+            System.out.println("Invalid clothing type!");
         }
     }
 
     // EFFECTS: creates a new clothing instance with given input
-    private Clothing makeClothing(String name, Double price, String type) {
+    private Clothing makeClothing(String name, Double price, String type) throws invalidTypeException {
         Clothing newClothing;
         if (type.equals("Top")) {
             newClothing = new Top(name, price);
@@ -118,8 +159,7 @@ public class ClothingStore {
         } else if (type.equals("Footwear")) {
             newClothing = new Footwear(name, price);
         } else {
-            newClothing = null;
-            System.out.println("ERROR: Invalid type");
+            throw new invalidTypeException();
         }
         return newClothing;
     }
@@ -134,8 +174,6 @@ public class ClothingStore {
         // Keeps the size of inventory before to track change
         int preSize = inventory.getSize();
 
-        System.out.println("~~~~Remove Menu~~~~");
-
         System.out.println("Please input the name of the clothing product that you would like to remove");
         name = userInput.nextLine();
 
@@ -148,7 +186,7 @@ public class ClothingStore {
         inventory.removeClothing(name, parseDouble(price), type);
 
         if (preSize == inventory.getSize()) {
-            System.out.println("There is no matching clothes. Nothing was removed.");
+            System.out.println("There are no matching clothes. Nothing was removed.");
         } else {
             System.out.println("Clothing removed!");
         }
@@ -159,14 +197,22 @@ public class ClothingStore {
         String choice;
         userInput = new Scanner(System.in);
 
-        System.out.println("~~~~~~~~Welcome to the Update Menu! Please input an action!~~~~~~~~");
-        System.out.println("\nType 'a' to add sales to a piece of clothing.");
-        System.out.println("\nType 'b' to add or remove sizes for a piece of clothing.");
-        System.out.println("\nType 'c' to change the name and/or price of a piece of clothing.");
-        System.out.println("\nType 'm' to return to the main menu.");
+        System.out.println("\na - add sales to a piece of clothing");
+        System.out.println("\nb - add or remove sizes for a piece of clothing");
+        System.out.println("\nc - change the name and/or price of a piece of clothing");
+        System.out.println("\nm - return to the main menu");
 
         choice = userInput.nextLine();
 
+        try {
+            executeUpdateChoice(choice);
+        } catch (invalidInputException e) {
+            System.out.println("Invalid input! Please make a valid choice.");
+        }
+    }
+
+    // EFFECTS: executes a choice for the update menu based on a give string
+    private void executeUpdateChoice(String choice) throws invalidInputException {
         if (choice.equals("a")) {
             salesMenu();
         } else if (choice.equals("b")) {
@@ -176,7 +222,7 @@ public class ClothingStore {
         } else if (choice.equals("m")) {
             mainMenu();
         } else {
-            System.out.println("Invalid input! Please make a valid choice.");
+            throw new invalidInputException();
         }
     }
 
@@ -184,23 +230,18 @@ public class ClothingStore {
     // EFFECTS: allows the user to add sales to a piece of clothing
     private void salesMenu() {
         String name;
-        String price;
         String type;
         String newSales;
-        System.out.println("~~~~Sales Menu~~~~");
 
         System.out.println("Please enter the follow for the clothing item that you would like to add sales for: ");
 
         System.out.print("Name: ");
         name = userInput.nextLine();
 
-        System.out.print("Price: ");
-        price = userInput.nextLine();
-
         System.out.print("Type: ");
         type = userInput.nextLine();
 
-        Clothing clothing = inventory.findClothing(name, parseDouble(price), type);
+        Clothing clothing = inventory.findClothing(name, type);
 
         if (clothing == null) {
             System.out.println("No clothing piece found!");
@@ -215,97 +256,104 @@ public class ClothingStore {
 
     // MODIFIES: this
     // EFFECTS: allows the user to add or remove sizes for a piece of clothing
-    @SuppressWarnings("methodlength")
     private void sizesMenu() {
         String name;
-        String price;
         String type;
-        String choice;
-        String size;
-        System.out.println("~~~~Sizes Menu~~~~");
 
         System.out.println("Please enter the follow for the clothing item that you would like to add sales for: ");
-
         System.out.print("Name: ");
         name = userInput.nextLine();
-
-        System.out.print("Price: ");
-        price = userInput.nextLine();
 
         System.out.print("Type: ");
         type = userInput.nextLine();
 
-        Clothing clothing = inventory.findClothing(name, parseDouble(price), type);
+        Clothing clothing = inventory.findClothing(name, type);
 
         if (clothing == null) {
             System.out.println("No clothing piece found!");
         } else {
-            System.out.println("Here are the following available sizes: " + listToString(clothing.getSizes()));
+            executeSizeChange(clothing);
+        }
+    }
 
-            System.out.println("Would you like to add or remove a size? (type 'a' or 'r')");
+    // MODIFIES: clothing
+    // EFFECTS: changes the sizes available for a clothing item based on user input
+    private void executeSizeChange(Clothing clothing) {
+        String choice;
 
-            choice = userInput.nextLine();
+        System.out.println("Here are the following available sizes: " + listToString(clothing.getSizes()));
+        System.out.println("a - add size");
+        System.out.println("r - remove size");
 
-            if (choice.equals("a")) {
-                System.out.println("Please enter a size that you would like to add: ");
-                size = userInput.nextLine();
-                clothing.addSize(size);
-                System.out.println("Size " + size + " added!");
-            } else if (choice.equals("r")) {
-                System.out.println("Please enter a size that you would like to remove: ");
-                size = userInput.nextLine();
-                clothing.removeSize(size);
-                System.out.println("Size " + size + " removed!");
-            } else {
-                System.out.println("Invalid choice, please try again!");
-            }
+        choice = userInput.nextLine();
+
+        try {
+            addRemoveSize(choice, clothing);
+        } catch (invalidInputException e) {
+            System.out.println("Invalid choice, please try again!");
+        }
+    }
+
+    // MODIFIES: clothing
+    // EFFECTS: executes choice to add/remove sizes
+    private void addRemoveSize(String choice, Clothing clothing) throws invalidInputException {
+        String size;
+        if (choice.equals("a")) {
+            System.out.println("Please enter a size that you would like to add: ");
+            size = userInput.nextLine();
+            clothing.addSize(size);
+            System.out.println("Size " + size + " added!");
+        } else if (choice.equals("r")) {
+            System.out.println("Please enter a size that you would like to remove: ");
+            size = userInput.nextLine();
+            clothing.removeSize(size);
+            System.out.println("Size " + size + " removed!");
+        } else {
+            throw new invalidInputException();
         }
     }
 
     // MODIFIES: this
     // EFFECTS: a menu to change the name and price of a given clothing item
-    @SuppressWarnings("methodlength")
     private void changeMenu() {
         String name;
-        String price;
         String type;
-
-        System.out.println("~~~~Change Menu~~~~\n");
 
         System.out.println("Please input the name of the clothing product that you would like to change");
         name = userInput.nextLine();
 
-        System.out.println("Please input the price of the clothing product that you would like to change");
-        price = userInput.nextLine();
-
         System.out.println("What clothing category is it? ('Top', 'Bottom', 'Outerwear', or 'Footwear')");
         type = userInput.nextLine();
 
-        Clothing toChange = inventory.findClothing(name, parseDouble(price), type);
+        Clothing toChange = inventory.findClothing(name, type);
 
         if (toChange == null) {
             System.out.println("No matching clothes. Please try again.");
         } else {
-            String newName;
-            String newPrice;
-
-            System.out.println("Please input the updated name of the clothing product that you would like to change");
-            newName = userInput.nextLine();
-
-            System.out.println("Please input the updated price of the clothing product that you would like to change");
-            newPrice = userInput.nextLine();
-
-            toChange.setName(newName);
-            toChange.setPrice(parseDouble(newPrice));
-
-            System.out.println("Changes applied!");
+            executeChange(toChange);
         }
+    }
+
+    // MODIFIES: toChange
+    // EFFECTS: changes a clothing's name and price based on the user's input
+    private void executeChange(Clothing toChange) {
+        String newName;
+        String newPrice;
+
+        System.out.println("Please input the updated name of the clothing product that you would like to change");
+        newName = userInput.nextLine();
+
+        System.out.println("Please input the updated price of the clothing product that you would like to change");
+        newPrice = userInput.nextLine();
+
+        toChange.setName(newName);
+        toChange.setPrice(parseDouble(newPrice));
+
+        System.out.println("Changes applied!");
     }
 
     // EFFECTS: prints out all the clothing instances with their information
     private void viewMenu() {
-        System.out.println("~~~~View Menu~~~~\n");
-
         if (inventory.getSize() == 0) {
             System.out.println("There are no clothes to view.");
         } else {
@@ -334,7 +382,7 @@ public class ClothingStore {
             }
         }
 
-        if (result == "") {
+        if (result.equals("")) {
             return "No available sizes";
         } else {
             return result;

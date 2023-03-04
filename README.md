@@ -22,3 +22,7 @@ into an interface.
 - A user of this system would want to change any field of a clothing item.
 
 - A user of this system would want to view all the items in their store inventory.
+
+- A user of this system would want to be able to save their clothing inventory to a file if they choose so.
+
+- A user of this system would want to be able to load their previously saved clothing inventory from a file if they choose so.
