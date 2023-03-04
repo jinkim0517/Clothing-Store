@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 // A test class for the JsonReader class
 // NOTE: This test class was heavily derived from the JsonSerializationDemo from EdX:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
-public class JsonReaderTest {
+public class JsonReaderTest extends CheckClothes{
     @Test
     void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
@@ -60,13 +60,5 @@ public class JsonReaderTest {
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
-    }
-
-    void checkClothing(Clothing c, String name, double price, String type, ArrayList<String> sizes, int sales) {
-        assertEquals(name, c.getName());
-        assertEquals(price, c.getPrice());
-        assertEquals(type, c.getType());
-        assertEquals(sizes, c.getSizes());
-        assertEquals(sales, c.getSales());
     }
 }

@@ -1,0 +1,28 @@
+{"clothes": [
+    {
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "price": 15,
+        "name": "Polo Shirt",
+        "type": "Top",
+        "sales": 0
+    },
+    {
+        "sizes": [
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33"
+        ],
+        "price": 25,
+        "name": "Jeans",
+        "type": "Bottom",
+        "sales": 0
+    }
+]}

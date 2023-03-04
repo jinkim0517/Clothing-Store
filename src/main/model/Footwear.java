@@ -22,13 +22,6 @@ public class Footwear extends Clothing {
         }
     }
 
-    // Getters
-
-    @Override
-    public String getType() {
-        return "Footwear";
-    }
-
     @Override
     // EFFECTS: creates a Json equivalent of this clothing object
     public JSONObject toJson() {
@@ -40,5 +33,12 @@ public class Footwear extends Clothing {
         json.put("sales", super.getSales());
 
         return json;
+    }
+
+    // Getters
+
+    @Override
+    public String getType() {
+        return "Footwear";
     }
 }

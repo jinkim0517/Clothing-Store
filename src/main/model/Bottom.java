@@ -22,13 +22,6 @@ public class Bottom extends Clothing {
         }
     }
 
-    // Getters
-
-    @Override
-    public String getType() {
-        return "Bottom";
-    }
-
     @Override
     // EFFECTS: creates a Json equivalent of this clothing object
     public JSONObject toJson() {
@@ -41,4 +34,12 @@ public class Bottom extends Clothing {
 
         return json;
     }
+
+    // Getters
+
+    @Override
+    public String getType() {
+        return "Bottom";
+    }
+
 }
