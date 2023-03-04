@@ -47,8 +47,7 @@ public class ClothingStore {
             } else {
                 try {
                     executeChoice(choice);
-                }
-                catch (invalidInputException e) {
+                } catch (InvalidInputException e) {
                     System.out.println("Invalid input! Please try again.");
                 }
             }
@@ -73,7 +72,7 @@ public class ClothingStore {
     }
 
     // EFFECTS: chooses a menu based on an input choice
-    private void executeChoice(String choice) throws invalidInputException {
+    private void executeChoice(String choice) throws InvalidInputException {
         if (choice.equals("a")) {
             addMenu();
         } else if (choice.equals("r")) {
@@ -84,10 +83,10 @@ public class ClothingStore {
             viewMenu();
         } else if (choice.equals("l")) {
             loadInventory();
-        }else if (choice.equals("s")) {
+        } else if (choice.equals("s")) {
             saveInventory();
-        }else {
-            throw new invalidInputException();
+        } else {
+            throw new InvalidInputException();
         }
     }
 
@@ -142,13 +141,13 @@ public class ClothingStore {
             Clothing newClothing = makeClothing(name, parseDouble(price), type);
             inventory.addClothing(newClothing);
             System.out.println("New clothing added!\n");
-        } catch (invalidTypeException e) {
+        } catch (InvalidTypeException e) {
             System.out.println("Invalid clothing type!");
         }
     }
 
     // EFFECTS: creates a new clothing instance with given input
-    private Clothing makeClothing(String name, Double price, String type) throws invalidTypeException {
+    private Clothing makeClothing(String name, Double price, String type) throws InvalidTypeException {
         Clothing newClothing;
         if (type.equals("Top")) {
             newClothing = new Top(name, price);
@@ -159,7 +158,7 @@ public class ClothingStore {
         } else if (type.equals("Footwear")) {
             newClothing = new Footwear(name, price);
         } else {
-            throw new invalidTypeException();
+            throw new InvalidTypeException();
         }
         return newClothing;
     }
@@ -206,13 +205,13 @@ public class ClothingStore {
 
         try {
             executeUpdateChoice(choice);
-        } catch (invalidInputException e) {
+        } catch (InvalidInputException e) {
             System.out.println("Invalid input! Please make a valid choice.");
         }
     }
 
     // EFFECTS: executes a choice for the update menu based on a give string
-    private void executeUpdateChoice(String choice) throws invalidInputException {
+    private void executeUpdateChoice(String choice) throws InvalidInputException {
         if (choice.equals("a")) {
             salesMenu();
         } else if (choice.equals("b")) {
@@ -222,7 +221,7 @@ public class ClothingStore {
         } else if (choice.equals("m")) {
             mainMenu();
         } else {
-            throw new invalidInputException();
+            throw new InvalidInputException();
         }
     }
 
@@ -289,14 +288,14 @@ public class ClothingStore {
 
         try {
             addRemoveSize(choice, clothing);
-        } catch (invalidInputException e) {
+        } catch (InvalidInputException e) {
             System.out.println("Invalid choice, please try again!");
         }
     }
 
     // MODIFIES: clothing
     // EFFECTS: executes choice to add/remove sizes
-    private void addRemoveSize(String choice, Clothing clothing) throws invalidInputException {
+    private void addRemoveSize(String choice, Clothing clothing) throws InvalidInputException {
         String size;
         if (choice.equals("a")) {
             System.out.println("Please enter a size that you would like to add: ");
@@ -309,7 +308,7 @@ public class ClothingStore {
             clothing.removeSize(size);
             System.out.println("Size " + size + " removed!");
         } else {
-            throw new invalidInputException();
+            throw new InvalidInputException();
         }
     }
 

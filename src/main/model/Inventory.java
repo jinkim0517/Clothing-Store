@@ -7,7 +7,7 @@ import persistence.Writable;
 import java.util.ArrayList;
 
 // An inventory of clothing with a list of clothes
-public class Inventory implements Writable{
+public class Inventory implements Writable {
     ArrayList<Clothing> inventory;
 
     // Creates a new list of clothes to be used as an inventory.
