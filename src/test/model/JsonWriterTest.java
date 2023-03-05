@@ -47,6 +47,8 @@ public class JsonWriterTest extends CheckClothes {
             Inventory inventory = new Inventory();
             inventory.addClothing(new Top("Polo Shirt", 15));
             inventory.addClothing(new Bottom("Jeans", 25));
+            inventory.addClothing(new Outerwear("Coat", 150));
+            inventory.addClothing(new Footwear("Shoes", 60));
             JsonWriter writer = new JsonWriter("./data/generalInventoryWriteTest.json");
             writer.open();
             writer.write(inventory);
@@ -55,7 +57,7 @@ public class JsonWriterTest extends CheckClothes {
             JsonReader reader = new JsonReader("./data/generalInventoryWriteTest.json");
             inventory = reader.read();
             List<Clothing> clothes = inventory.getInventory();
-            assertEquals(2, clothes.size());
+            assertEquals(4, clothes.size());
 
             ArrayList<String> defaultTopSizes = new ArrayList<>();
             defaultTopSizes.add("S");
@@ -68,8 +70,15 @@ public class JsonWriterTest extends CheckClothes {
                 defaultBotSizes.add(Integer.toString(i));
             }
 
+            ArrayList<String> defaultShoeSizes = new ArrayList<>();
+            for (int i = 6; i <= 14; i++) {
+                defaultShoeSizes.add(Integer.toString(i));
+            }
+
             checkClothing(clothes.get(0), "Polo Shirt", 15, "Top", defaultTopSizes, 0);
             checkClothing(clothes.get(1), "Jeans", 25, "Bottom", defaultBotSizes, 0);
+            checkClothing(clothes.get(2), "Coat", 150, "Outerwear", defaultTopSizes, 0);
+            checkClothing(clothes.get(3), "Shoes", 60, "Footwear", defaultShoeSizes, 0);
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

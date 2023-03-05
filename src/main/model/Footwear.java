@@ -16,7 +16,6 @@ public class Footwear extends Clothing {
     // MODIFIES: this
     // EFFECTS: initializes sizes to appropriate values
     public void initializeSizes() {
-        ArrayList<String> result = new ArrayList<>();
         for (int i = 6; i <= 14; i++) {
             super.addSize(Integer.toString(i));
         }

@@ -42,7 +42,7 @@ public class JsonReaderTest extends CheckClothes{
         try {
             Inventory inventory = reader.read();
             List<Clothing> clothes = inventory.getInventory();
-            assertEquals(2, inventory.getSize());
+            assertEquals(4, inventory.getSize());
 
             ArrayList<String> firstSizes = new ArrayList<>();
             firstSizes.add("S");
@@ -55,8 +55,15 @@ public class JsonReaderTest extends CheckClothes{
                 secondSizes.add(Integer.toString(i));
             }
 
+            ArrayList<String> defaultShoeSizes = new ArrayList<>();
+            for (int i = 6; i <= 14; i++) {
+                defaultShoeSizes.add(Integer.toString(i));
+            }
+
             checkClothing(clothes.get(0), "Leather Jacket", 70, "Outerwear", firstSizes, 17);
             checkClothing(clothes.get(1), "Dress Pants", 45, "Bottom", secondSizes, 0);
+            checkClothing(clothes.get(2), "Coat", 150, "Outerwear", firstSizes, 0);
+            checkClothing(clothes.get(3), "Shoes", 60, "Footwear", defaultShoeSizes, 0);
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
