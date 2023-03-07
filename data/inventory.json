@@ -1,18 +1,6 @@
 {"clothes": [
     {
         "sizes": [
-            "S",
-            "M",
-            "L",
-            "XL"
-        ],
-        "price": 70,
-        "name": "Leather Jacket",
-        "type": "Outerwear",
-        "sales": 17
-    },
-    {
-        "sizes": [
             "28",
             "29",
             "30",
@@ -20,22 +8,32 @@
             "32",
             "33"
         ],
-        "price": 45,
-        "name": "Dress Pants",
+        "price": 15,
+        "name": "Shorts",
         "type": "Bottom",
-        "sales": 0
+        "sales": 17
+    },
+    {
+        "sizes": [
+            "S",
+            "L",
+            "XL"
+        ],
+        "price": 10,
+        "name": "T Shirt",
+        "type": "Top",
+        "sales": 47
     },
     {
         "sizes": [
             "S",
             "M",
             "L",
-            "XL",
-            "XXL"
+            "XL"
         ],
-        "price": 15,
-        "name": "T Shirt",
-        "type": "Top",
-        "sales": 55
+        "price": 70,
+        "name": "Jacket",
+        "type": "Outerwear",
+        "sales": 7
     }
 ]}

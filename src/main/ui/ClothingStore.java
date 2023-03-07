@@ -219,7 +219,7 @@ public class ClothingStore {
         } else if (choice.equals("c")) {
             changeMenu();
         } else if (choice.equals("m")) {
-            mainMenu();
+            // ends update menu and returns to main menu
         } else {
             throw new InvalidInputException();
         }
@@ -259,7 +259,7 @@ public class ClothingStore {
         String name;
         String type;
 
-        System.out.println("Please enter the follow for the clothing item that you would like to add sales for: ");
+        System.out.println("Please enter the follow for the clothing item that you would like to change sizes for: ");
         System.out.print("Name: ");
         name = userInput.nextLine();
 
