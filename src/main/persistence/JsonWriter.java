@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-// Represents a writer that writes JSON representation of workroom to file
+// Represents a writer that writes JSON representation of inventory to file
 // NOTE: This class was taken and then modified from the JsonSerializationDemo from EdX:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 public class JsonWriter {
@@ -26,7 +26,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of inventory to file
     public void write(Inventory inventory) {
         JSONObject json = inventory.toJson();
         saveToFile(json.toString(TAB));

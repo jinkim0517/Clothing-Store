@@ -26,3 +26,23 @@ into an interface.
 - A user of this system would want to be able to save their clothing inventory to a file if they choose so.
 
 - A user of this system would want to be able to load their previously saved clothing inventory from a file if they choose so.
+
+### Instructions for grader
+- To add a custom piece of clothing, press the button labeled "Add Clothing".
+  - Then, input all the information for the clothing piece, and then press the button labeled "Submit" once done.
+    - If any inputs are invalid, you will see an error window.
+    - If all inputs are valid, you will see a success window.
+- To remove a piece of clothing, press the button labeled "Remove Clothing".
+  - Then, input all the information for the clothing piece that you would like to remove, and then press the button labeled "Submit" once done.
+    - If any inputs are invalid, you will see an error window.
+    - If all inputs are valid, you will see a success window.
+- To view the inventory (all the clothes), press the button labeled "View Clothing".
+  - All the clothing will be shown, and you can reverse the order by pressing the button labeled "Reverse Order".
+  - You can toggle through different types of clothing by pressing the button labeled "Current Type: ___", where "___" corresponds to the current type being shown.
+  - Press the button labeled "Main Menu" to return to the main screen.
+- To load a saved inventory, simply press the button labeled "Load Saved Inventory".
+  - A popup screen will appear with a success or fail message.
+- To save the current inventory, simply press the button labeled "Save Inventory" on the main menu.
+  - A popup screen will appear with a success or fail message.
+- To quit from the application, simply press the button labeled "Quit" on the main menu.
+- The visual component can be found on the main screen, where one can see an extremely finely dressed monkey.

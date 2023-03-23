@@ -35,5 +35,34 @@
         "name": "Jacket",
         "type": "Outerwear",
         "sales": 7
+    },
+    {
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "price": 99,
+        "name": "This is a test",
+        "type": "Top",
+        "sales": 0
+    },
+    {
+        "sizes": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14"
+        ],
+        "price": 15,
+        "name": "This is another test",
+        "type": "Footwear",
+        "sales": 0
     }
 ]}
