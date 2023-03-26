@@ -13,5 +13,6 @@ public class Screen extends JFrame {
         menu.setLayout(null);
         menu.setSize(WIDTH, HEIGHT);
         menu.setVisible(true);
+        menu.setResizable(false);
     }
 }

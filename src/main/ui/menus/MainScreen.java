@@ -29,7 +29,7 @@ public class MainScreen extends Screen implements ActionListener {
     private JButton toSave = new JButton();
     private JButton toQuit = new JButton();
     JLabel message;
-    private ImageIcon image = new ImageIcon("./src/main/ui/images/mainScreenImage.jpeg");
+    private ImageIcon image = new ImageIcon("./src/main/ui/images/poloTImage.jpeg");
 
 
     // EFFECTS: Initializes the main screen with the data of a given inventory
@@ -49,7 +49,7 @@ public class MainScreen extends Screen implements ActionListener {
         message = new JLabel();
         message.setText("Welcome to the Main Menu, please select an option.");
         message.setFont(new Font("Arial", Font.BOLD + Font.ITALIC, 20));
-        message.setBounds(35, 100, 500, 50);
+        message.setBounds(85, 100, 500, 50);
         this.add(message);
     }
 
@@ -68,7 +68,7 @@ public class MainScreen extends Screen implements ActionListener {
     // EFFECTS: Initializes a single button to a given string at a given index
     private void initializeButton(JButton button, String label, int index) {
         button.setText(label);
-        button.setBounds(WIDTH / 2 + 100, 110 + BUTTON_HEIGHT * index, BUTTON_WIDTH, BUTTON_HEIGHT);
+        button.setBounds(WIDTH / 2 + 150, 110 + BUTTON_HEIGHT * index, BUTTON_WIDTH, BUTTON_HEIGHT);
         button.addActionListener(this);
         this.add(button);
     }
@@ -76,10 +76,11 @@ public class MainScreen extends Screen implements ActionListener {
     // EFFECTS: initializes images to be displayed
     private void initializeImages() {
         JLabel imagePlacement = new JLabel(image);
-        imagePlacement.setBounds(70, HEIGHT / 2 - 200, 400, 400);
+        imagePlacement.setBounds(140, HEIGHT / 2 - 200, 400, 400);
         this.add(imagePlacement);
     }
 
+    // MODIFIES: inventory
     // EFFECTS: loads inventory dataset from JSON_STORE
     private void load() {
         try {
@@ -90,6 +91,7 @@ public class MainScreen extends Screen implements ActionListener {
         }
     }
 
+    // MODIFIES: inventory.json
     // EFFECTS: saves inventory dataset to JSON_STORE
     private void save() {
         try {

@@ -1,20 +1,6 @@
 {"clothes": [
     {
         "sizes": [
-            "28",
-            "29",
-            "30",
-            "31",
-            "32",
-            "33"
-        ],
-        "price": 15,
-        "name": "Shorts",
-        "type": "Bottom",
-        "sales": 17
-    },
-    {
-        "sizes": [
             "S",
             "L",
             "XL"
@@ -38,14 +24,16 @@
     },
     {
         "sizes": [
-            "S",
-            "M",
-            "L",
-            "XL"
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33"
         ],
-        "price": 99,
-        "name": "This is a test",
-        "type": "Top",
+        "price": 25,
+        "name": "Jeans",
+        "type": "Bottom",
         "sales": 0
     },
     {
@@ -60,8 +48,8 @@
             "13",
             "14"
         ],
-        "price": 15,
-        "name": "This is another test",
+        "price": 120,
+        "name": "Air Force 1",
         "type": "Footwear",
         "sales": 0
     }

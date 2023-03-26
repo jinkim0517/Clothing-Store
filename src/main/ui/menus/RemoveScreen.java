@@ -16,6 +16,7 @@ public class RemoveScreen extends Screen implements ActionListener {
 
     JButton submit = new JButton("Submit");
 
+    // EFFECTS: constructs a remove screen given the data of an inventory
     public RemoveScreen(Inventory inventory) {
         this.inventory = inventory;
         initializeMenu(this);
@@ -23,12 +24,14 @@ public class RemoveScreen extends Screen implements ActionListener {
         initializeButtons();
     }
 
+    // EFFECTS: initializes text fields
     private void initializeTextFields() {
         initializeTextField(name, "Please enter the name", 0);
         initializeTextField(price, "Please enter the price", 1);
         initializeTextField(type, "Please enter the type (Top, Bottom, Outerwear, Footwear)", 2);
     }
 
+    // EFFECTS: initializes a single text field
     private void initializeTextField(JTextField textField, String label, int index) {
         JLabel fieldLabel = new JLabel(label);
         if (index == 2) {
@@ -42,6 +45,7 @@ public class RemoveScreen extends Screen implements ActionListener {
         this.add(textField);
     }
 
+    // EFFECTS: initializes buttons
     private void initializeButtons() {
         submit.setBounds(WIDTH - 200, HEIGHT / 2 - 50, 150, 50);
         submit.setVisible(true);
@@ -51,6 +55,8 @@ public class RemoveScreen extends Screen implements ActionListener {
 
 
     @Override
+    // MODIFIES: inventory
+    // EFFECTS: performs actions based on source button
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
             try {

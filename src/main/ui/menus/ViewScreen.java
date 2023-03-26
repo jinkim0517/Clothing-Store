@@ -107,6 +107,7 @@ public class ViewScreen extends Screen implements ActionListener {
         }
     }
 
+    // MODIFIES: clothes
     // EFFECTS: Shows the inventory with the desired filter
     private void showInventory(Types type) {
         if (type.equals(Types.NONE)) {
@@ -126,6 +127,7 @@ public class ViewScreen extends Screen implements ActionListener {
         this.add(clothes);
     }
 
+    // MODIFIES: clothes
     // EFFECTS: reverses the order of clothes
     public void reverseOrder() {
         ListModel temp = clothes.getModel();
@@ -136,6 +138,7 @@ public class ViewScreen extends Screen implements ActionListener {
         clothes.setModel(reversed);
     }
 
+    // MODIFIES: currentType
     // EFFECTS: executes a toggle filter based on a given type
     public void executeToggle() {
         if (currentType.equals(Types.NONE)) {
@@ -162,7 +165,8 @@ public class ViewScreen extends Screen implements ActionListener {
     }
 
     @Override
-    // Performs actions based on the button pressed
+    // MODIFIES: this
+    // EFFECTS: Performs actions based on the button pressed
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == mainMenu) {
             this.dispose();

@@ -70,6 +70,7 @@ public class AddScreen extends Screen implements ActionListener {
     }
 
     @Override
+    // MODIFIES: inventory
     // EFFECTS: handles button presses
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
