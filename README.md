@@ -30,19 +30,17 @@ into an interface.
 ### Instructions for grader
 - To add a custom piece of clothing, press the button labeled "Add Clothing".
   - Then, input all the information for the clothing piece, and then press the button labeled "Submit" once done.
-    - If any inputs are invalid, you will see an error window.
-    - If all inputs are valid, you will see a success window.
+    - A corresponding pop-up window will appear
 - To remove a piece of clothing, press the button labeled "Remove Clothing".
   - Then, input all the information for the clothing piece that you would like to remove, and then press the button labeled "Submit" once done.
-    - If any inputs are invalid, you will see an error window.
-    - If all inputs are valid, you will see a success window.
+    - A corresponding pop-up window will appear
 - To view the inventory (all the clothes), press the button labeled "View Clothing".
   - All the clothing will be shown, and you can reverse the order by pressing the button labeled "Reverse Order".
-  - You can toggle through different types of clothing by pressing the button labeled "Current Type: ___", where "___" corresponds to the current type being shown.
+  - You can toggle through different types of clothing by pressing the button labeled "Current Type: \_\_\_", where "___" corresponds to the current type being shown.
   - Press the button labeled "Main Menu" to return to the main screen.
 - To load a saved inventory, simply press the button labeled "Load Saved Inventory".
-  - A popup screen will appear with a success or fail message.
+  - A pop-up screen will appear with a success or fail message.
 - To save the current inventory, simply press the button labeled "Save Inventory" on the main menu.
-  - A popup screen will appear with a success or fail message.
+  - A pop-up screen will appear with a success or fail message.
 - To quit from the application, simply press the button labeled "Quit" on the main menu.
 - The visual component can be found on the main screen, where one can see an extremely well drawn t-shirt (drawn by Jin Kim).

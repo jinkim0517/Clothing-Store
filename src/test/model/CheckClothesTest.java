@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // A helper class for tests that check reading/writing clothes
-public class CheckClothes {
+public class CheckClothesTest {
     Clothing c1;
 
     // EFFECTS: Checks if a clothing has the same inputted fields
