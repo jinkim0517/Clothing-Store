@@ -29,7 +29,7 @@ public class MainScreen extends Screen implements ActionListener {
     private JButton toSave = new JButton();
     private JButton toQuit = new JButton();
     JLabel message;
-    private ImageIcon image = new ImageIcon("./src/main/ui/images/$wagGorilla.png");
+    private ImageIcon image = new ImageIcon("./src/main/ui/images/$wagGorilla.jpg");
 
 
     // EFFECTS: Initializes the main screen with the data of a given inventory
@@ -49,7 +49,7 @@ public class MainScreen extends Screen implements ActionListener {
         message = new JLabel();
         message.setText("Welcome to the Main Menu, please select an option.");
         message.setFont(new Font("Arial", Font.BOLD + Font.ITALIC, 20));
-        message.setBounds(85, 50, 500, 50);
+        message.setBounds(85, 75, 500, 50);
         this.add(message);
     }
 
