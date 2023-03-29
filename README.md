@@ -43,4 +43,6 @@ into an interface.
 - To save the current inventory, simply press the button labeled "Save Inventory" on the main menu.
   - A pop-up screen will appear with a success or fail message.
 - To quit from the application, simply press the button labeled "Quit" on the main menu.
-- The visual component can be found on the main screen, where one can see an extremely well drawn t-shirt (drawn by Jin Kim).
+- The visual component can be found on the main screen, where one can see an extremely well dressed monkey can be seen.
+
+Image Credit: "$wag Gorilla", by Eunae Kim, March 29th 2023. 

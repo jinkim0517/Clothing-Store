@@ -52,5 +52,31 @@
         "name": "Air Force 1",
         "type": "Footwear",
         "sales": 0
+    },
+    {
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ],
+        "price": 40,
+        "name": "Hoodie",
+        "type": "Outerwear",
+        "sales": 0
+    },
+    {
+        "sizes": [
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33"
+        ],
+        "price": 19.99,
+        "name": "Shorts",
+        "type": "Bottom",
+        "sales": 0
     }
 ]}

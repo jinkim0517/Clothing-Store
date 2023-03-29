@@ -29,15 +29,15 @@ public class MainScreen extends Screen implements ActionListener {
     private JButton toSave = new JButton();
     private JButton toQuit = new JButton();
     JLabel message;
-    private ImageIcon image = new ImageIcon("./src/main/ui/images/poloTImage.jpeg");
+    private ImageIcon image = new ImageIcon("./src/main/ui/images/$wagGorilla.png");
 
 
     // EFFECTS: Initializes the main screen with the data of a given inventory
     public MainScreen(Inventory inventory) {
         this.inventory = inventory;
         initializeMessage();
-        initializeButtons();
         initializeMenu(this);
+        initializeButtons();
         initializeImages();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
@@ -49,7 +49,7 @@ public class MainScreen extends Screen implements ActionListener {
         message = new JLabel();
         message.setText("Welcome to the Main Menu, please select an option.");
         message.setFont(new Font("Arial", Font.BOLD + Font.ITALIC, 20));
-        message.setBounds(85, 100, 500, 50);
+        message.setBounds(85, 50, 500, 50);
         this.add(message);
     }
 
@@ -68,6 +68,7 @@ public class MainScreen extends Screen implements ActionListener {
     // EFFECTS: Initializes a single button to a given string at a given index
     private void initializeButton(JButton button, String label, int index) {
         button.setText(label);
+        button.setFont(new Font("Default", Font.BOLD, 12));
         button.setBounds(WIDTH / 2 + 150, 110 + BUTTON_HEIGHT * index, BUTTON_WIDTH, BUTTON_HEIGHT);
         button.addActionListener(this);
         this.add(button);
