@@ -1,7 +1,6 @@
 package ui.menus;
 
 import javax.swing.*;
-import java.awt.*;
 
 // A superclass for all screens
 public class Screen extends JFrame {
