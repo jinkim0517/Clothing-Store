@@ -130,12 +130,8 @@ public class ViewScreen extends Screen implements ActionListener {
     // MODIFIES: clothes
     // EFFECTS: reverses the order of clothes
     public void reverseOrder() {
-        ListModel temp = clothes.getModel();
-        DefaultListModel reversed = new DefaultListModel();
-        for (int i = 0; i < temp.getSize(); i++) {
-            reversed.add(i, temp.getElementAt(temp.getSize() - (i + 1)));
-        }
-        clothes.setModel(reversed);
+        inventory.reverseOrder();
+        clothes.setModel(convertInventory(currentType));
     }
 
     // MODIFIES: currentType

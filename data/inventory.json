@@ -78,5 +78,19 @@
         "name": "Shorts",
         "type": "Bottom",
         "sales": 0
+    },
+    {
+        "sizes": [
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33"
+        ],
+        "price": 65,
+        "name": "Dress Pants",
+        "type": "Bottom",
+        "sales": 0
     }
 ]}

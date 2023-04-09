@@ -47,3 +47,14 @@ into an interface.
   - The image can be found in the images folder.
 
 Image Credit: "$wag Gorilla", by Eunae Kim, March 29th 2023. 
+
+
+### Phase 4: Task 3
+For refactoring this project, there are many changes I would make (and will make after the semester is over) to the overall design of this program.
+Firstly, I would definitely utilize the Singleton pattern to account for my single Inventory object being passed around as a parameter to each Screen subclass. 
+This would help to simplify my design, since all the association arrows would be removed from all the Screen subtypes.
+Also, I would add more functions to the Screen class so that there is less code duplication within its subclasses. 
+One major area that I would like to refactor is the ViewScreen class, as the usage of methods like enumTypesToString() and convertInventory() aren't very elegant. The class has both a class-level
+parameter called currentType, yet the methods still take an unnecessary parameter to indicate the current type. This would reduce confusion for both my future self and also any other viewers of this program.
+Finally, I believe that a cleaner and simpler usage of all the JList, JFrame, and JButton within my program could be made if I learn more about the library. For instance,
+instead of closing the window and reopening a new one to go to a new menu, perhaps I could change it to simply refresh the current window.

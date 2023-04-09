@@ -9,7 +9,7 @@ public class Screen extends JFrame {
 
     // EFFECTS: initializes a JFrame to a standardized size and setting
     protected void initializeMenu(JFrame menu) {
-        menu.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        menu.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         menu.setLayout(null);
         menu.setSize(WIDTH, HEIGHT);
         menu.setVisible(true);

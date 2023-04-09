@@ -2,8 +2,6 @@ package model;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 // An outerwear clothing item with a name, price, category, list of sizes and number of sales
 public class Outerwear extends Clothing {
     // REQUIRES: non-empty name, 0 <= price

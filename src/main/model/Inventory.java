@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 // An inventory of clothing with a list of clothes
 public class Inventory implements Writable {
@@ -19,6 +20,7 @@ public class Inventory implements Writable {
     // EFFECTS: adds a clothing item to the inventory
     public void addClothing(Clothing c) {
         inventory.add(c);
+        EventLog.getInstance().logEvent(new Event("Added " + c.getName() + " to the inventory."));
     }
 
     // REQUIRES: clothing to be removed must be in the inventory already
@@ -27,6 +29,7 @@ public class Inventory implements Writable {
     public void removeClothing(String name, double price, String type) {
         Clothing toRemove = findClothing(name, type);
         inventory.remove(toRemove);
+        EventLog.getInstance().logEvent(new Event("Removed " + toRemove.getName() + " from the inventory."));
     }
 
     // EFFECTS: Searches the inventory for a piece of clothing
@@ -38,6 +41,11 @@ public class Inventory implements Writable {
             }
         }
         return result;
+    }
+
+    public void reverseOrder() {
+        Collections.reverse(inventory);
+        EventLog.getInstance().logEvent(new Event("Reversed the inventory's order."));
     }
 
     // Getters

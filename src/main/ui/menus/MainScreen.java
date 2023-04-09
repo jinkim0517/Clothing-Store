@@ -1,5 +1,7 @@
 package ui.menus;
 
+import model.Event;
+import model.EventLog;
 import model.Inventory;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -35,10 +37,10 @@ public class MainScreen extends Screen implements ActionListener {
     // EFFECTS: Initializes the main screen with the data of a given inventory
     public MainScreen(Inventory inventory) {
         this.inventory = inventory;
+        initializeImages();
         initializeMessage();
         initializeMenu(this);
         initializeButtons();
-        initializeImages();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
     }
@@ -105,6 +107,12 @@ public class MainScreen extends Screen implements ActionListener {
         }
     }
 
+    // EFFECTS: prints the event log to the console
+    private void printEventLog() {
+        for (Event e : EventLog.getInstance()) {
+            System.out.println(e.toString());
+        }
+    }
 
     @Override
     // EFFECTS: Performs the actions based on the button pressed
@@ -116,12 +124,14 @@ public class MainScreen extends Screen implements ActionListener {
             this.dispose();
             RemoveScreen removeScreen = new RemoveScreen(inventory);
         } else if (e.getSource() == toViewMenu) {
+            this.dispose();
             ViewScreen viewScreen = new ViewScreen(inventory);
         } else if (e.getSource() == toLoad) {
             load();
         } else if (e.getSource() == toSave) {
             save();
         } else if (e.getSource() == toQuit) {
+            printEventLog();
             System.exit(0);
         }
     }

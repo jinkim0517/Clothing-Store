@@ -4,12 +4,7 @@ import model.*;
 import ui.menus.MainScreen;
 
 public class StoreGUI {
-
-    private Inventory inventory;
-
-    public StoreGUI() {
+    public static void main(String[] args) {
         MainScreen mainScreen = new MainScreen(new Inventory());
     }
-
-
 }
