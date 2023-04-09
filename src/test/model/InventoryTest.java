@@ -73,4 +73,18 @@ public class InventoryTest {
         assertEquals(c1, inventory.getClothingAt(0));
         assertEquals(c2, inventory.getClothingAt(1));
     }
+
+    @Test
+    public void reverseOrderTest() {
+        inventory.addClothing(c1);
+        inventory.addClothing(c2);
+        inventory.reverseOrder();
+
+        assertEquals(c2, inventory.getClothingAt(0));
+        assertEquals(c1, inventory.getClothingAt(1));
+
+        inventory.reverseOrder();
+        assertEquals(c1, inventory.getClothingAt(0));
+        assertEquals(c2, inventory.getClothingAt(1));
+    }
 }
