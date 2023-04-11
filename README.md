@@ -48,6 +48,27 @@ into an interface.
 
 Image Credit: "$wag Gorilla", by Eunae Kim, March 29th 2023. 
 
+### Phase 4: Task 2
+Example log output:
+
+Tue Apr 11 14:59:51 PDT 2023    
+Added Jacket to the inventory.  
+Tue Apr 11 14:59:51 PDT 2023    
+Added Jeans to the inventory.   
+Tue Apr 11 14:59:51 PDT 2023    
+Added Air Force 1 to the inventory.     
+Tue Apr 11 14:59:51 PDT 2023    
+Added Hoodie to the inventory.  
+Tue Apr 11 14:59:51 PDT 2023    
+Added Shorts to the inventory.  
+Tue Apr 11 14:59:51 PDT 2023    
+Added Dress Pants to the inventory.     
+Tue Apr 11 14:59:56 PDT 2023    
+Reversed the inventory's order.     
+Tue Apr 11 14:59:57 PDT 2023    
+Reversed the inventory's order.     
+Tue Apr 11 15:00:25 PDT 2023    
+Removed T Shirt from the inventory. 
 
 ### Phase 4: Task 3
 For refactoring this project, there are many changes I would make (and will make after the semester is over) to the overall design of this program.
