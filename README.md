@@ -27,7 +27,7 @@ into an interface.
 
 - A user of this system would want to be able to load their previously saved clothing inventory from a file if they choose so.
 
-### Instructions for grader
+### Instructions for user
 - To add a custom piece of clothing, press the button labeled "Add Clothing".
   - Then, input all the information for the clothing piece, and then press the button labeled "Submit" once done.
     - A corresponding pop-up window will appear
@@ -48,9 +48,7 @@ into an interface.
 
 Image Credit: "$wag Gorilla", by Eunae Kim, March 29th 2023. 
 
-### Phase 4: Task 2
-Example log output:
-
+### Example Log Output
 Tue Apr 11 14:59:51 PDT 2023    
 Added Jacket to the inventory.  
 Tue Apr 11 14:59:51 PDT 2023    
@@ -70,7 +68,7 @@ Reversed the inventory's order.
 Tue Apr 11 15:00:25 PDT 2023    
 Removed T Shirt from the inventory. 
 
-### Phase 4: Task 3
+### Reflection/Looking Forward
 For refactoring this project, there are many changes I would make (and will make after the semester is over) to the overall design of this program.
 Firstly, I would definitely utilize the Singleton pattern to account for my single Inventory object being passed around as a parameter to each Screen subclass. 
 This would help to simplify my design, since all the association arrows would be removed from all the Screen subtypes.
