@@ -1,4 +1,4 @@
-# Clothing Store Inventory Management System
+# Clothing Store Management System
 
 ### A database system for a clothing store
 
@@ -26,6 +26,14 @@ into an interface.
 - A user of this system would want to be able to save their clothing inventory to a file if they choose so.
 
 - A user of this system would want to be able to load their previously saved clothing inventory from a file if they choose so.
+
+### Demo
+
+
+
+https://github.com/jinkim0517/Clothing-Store/assets/90814113/0098d1da-a81e-4784-b478-6c8289352a90
+
+
 
 ### Instructions for user
 - To add a custom piece of clothing, press the button labeled "Add Clothing".
